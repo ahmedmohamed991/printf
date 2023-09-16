@@ -5,4 +5,6 @@
 #include <stdarg.h>
 int _printf(const char *format, ...);
 int _putchar(char c);
+int _handle(const char *format, int *a);
+void convert(unsigned int N);
 #endif
