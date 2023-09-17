@@ -1,76 +1,64 @@
 #include"main.h"
+void print_buffer(char buffer[], int *x);
+
+
 /**
- * _printf - implementation of printf that hadels the 'c' , 's' ,and '%'
- *
- * @format: format string containing zero or more
- * Return: the number of characters printed
- * ( excluding the null byte used to end output to strings).
- *
+ * _printf - printed function
+ * @format: format.
+ * Return: printed chars.
  */
-int _printf(const char *format, ...);
-va_list numarg;
-va_start(numarg, format);
-
-
-int a = 0;
-int x;
-
-for (x = 0; format[x]; x++)
+int _printf(const char *format, ...)
 {
-	if (format[x] == '%')
+
+	va_list num;
+
+	va_start(num, format);
+	if (format == NULL)
+		return (-1);
+	char buffer[size];
+	int x = 0, i;
+
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		x++;
-		if (format[x] == 'c')
+		if (format[i] != '%')
 		{
-			char b = va_arg(numarg, int);
-
-			putchar(c);
-			a++;
-		}
-		else if (format[x] == 's')
-		{
-			char *s = va_arg(numarg, char*);
-
-			for (; *s; s++, a++)
-			{
-				putchar(*s);
-			}
-		}
-		else if (format[x] == '%')
-		{
-			putchar('%');
-			a++;
+			buffer[x++] = format[i];
+			if (x == size)
+				print_buffer(buffer, &x);
+			int print_char++;
 		}
 		else
 		{
-			putchar('%');
-			putchar(format[x]);
-			a += 2;
+			print_buffer(buffer, &x);
+			int f = get_flags(format, &i);
+			int width = get_width(format, &i, num);
+			int pr = get_precision(format, &i, num);
+			int size = get_size(format, &i);
+i++;
+int pri = handle_print(format, &i, num, buffer, flags, width, precision, size);
+
+			if (pri == -1)
+				return (-1);
+			print_char += pri;
 		}
 	}
-	else
-	{
-		putchar(format[x]);
-		a++;
-	}
+	print_buffer(buffer, &x);
+
+	va_end(num);
+
+	return (print_char);
 }
-va_end(numarg);
-return (a);
-}
+
+
 /**
- * main - Entry point of the program.
- *
- * this function demonstrates the usage of the _printf function
- *
- * Return: Always return 0 to indicate successful execution.
+ * print_buffer - prints the contentes of the buffer if it exist
+ * @buffer: array of chars
+ * @x: index at which to add next char
  */
-
-int main(void)
+void print_buffer(char buffer[], int x)
 {
-	char b = 'a';
-		char *s = "hello";
-	int a = _printf("Character: %c\nString: %s\npercent: %%\n", b, s);
+	if (*x > 0)
+		write(1, &buffer[0], *x);
 
-	printf("Number of characters printed: %d\n", a);
-	return (o);
+	*x = 0;
 }
