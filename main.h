@@ -60,7 +60,7 @@ int f, int w, int s, int p);
 int _pointer(va_list t, char b[],
 int f, int w, int p, int s);
 int _flags(const char *format, int *a);
-int _width(const char *s, int *a, va_list l);
+int _width(const char *f, int *a, va_list l);
 int _precision(const char *f, int *a, va_list l);
 int _size(const char *f, int *a);
 int _reverse(va_list t, char b[],

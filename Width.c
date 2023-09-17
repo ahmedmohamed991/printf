@@ -6,7 +6,7 @@
  * @l: list of arguments
  * Return: width
  */
-int _width(const char *f, int *i, va_list l)
+int _width(const char *f, int *a, va_list l)
 {
 	int w = 0;
 	int ci;
@@ -30,6 +30,6 @@ int _width(const char *f, int *i, va_list l)
 			break;
 		}
 	}
-	*i = ci - 1;
+	*a = ci - 1;
 	return (w);
 }
