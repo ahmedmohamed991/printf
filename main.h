@@ -31,10 +31,11 @@ int (*fn)(va_list, char[], int, int, int, int);
  * typedef struct fmt fmt_t - struct op
  * @fmt: format
  * @fm_t: function
+ *
  */
 typedef struct fmt fmt_t;
 int _printf(const char *format, ...);
-int _handle(const char *format, int *a, va_list l, char b[]
+int _handlep(const char *fm, int *d, va_list l, char b[]
 , int f, int w, int s, int p);
 int _char(va_list t, char b[],
 int f, int w, int p, int s);
@@ -51,7 +52,7 @@ int _octal(va_list t, char b[],
 int f, int s, int w, int p);
 int _hexa(va_list t, char b[],
 int f, int w, int s, int p);
-int _haexau(va_list t, char b[],
+int _hexau(va_list t, char b[],
 int f, int w, int s, int p);
 int _h(va_list t, char ma[],
 char b[], int f, char fc, int w, int p, int s);
@@ -73,7 +74,7 @@ int f, int w, int p, int s);
 int _numbers(int _positive, int d, char b[],
 int f, int w, int p, int s);
 int _num(int d, char b[], int f, int w, int p, int l, char pa, char ec);
-int _wpointer(char c[], int d, int l,
+int write_pointer(char c[], int d, int l,
 int w, int f, char, pa, char ec, int pas);
 int _unsgnd(int _negative, int d,
 char b[], int f, int w, int s, int p);

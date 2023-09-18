@@ -17,13 +17,13 @@ int _pointer(va_list t, char b[], int f, int w, int s, int p)
 	char ma[] = "0123456789abcdef";
 	void *add = va_arg(t, void *);
 
-	unused(w);
-	unused(s);
+	UNUSED(w);
+	UNUSED(s);
 
 	if (add == NULL)
 		return (write(1, "(nill)", 5));
 	b[buff - 1] = '\0';
-	unused(p);
+	UNUSED(p);
 	n = (unsigned long)add;
 	while (n > 0)
 	{
@@ -57,10 +57,10 @@ int _nonprint(va_list t, char b[], int f, int s, int p, int w)
 	int os = 0;
 	char *st = va_arg(t, char *);
 
-	unused(f);
-	unused(w);
-	unused(p);
-	unused(s);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(p);
+	UNUSED(s);
 
 	if (st == NULL)
 		return (write(1, "(null)", 6));
@@ -69,7 +69,7 @@ int _nonprint(va_list t, char b[], int f, int s, int p, int w)
 		if (_printable(st[a]))
 			b[a + os] = st[a];
 		else
-			os += _hexacode(st[a], b, a + os);
+			os += a_hexa(st[a], b, a + os);
 		a++;
 	}
 	b[a + os] = '\0';
@@ -90,16 +90,16 @@ int _reverse(va_list t, char b[], int s, int p, int w, int f)
 	char *st;
 	int a, c = 0;
 
-	unused(b);
-	unused(f);
-	unused(w);
-	unused(s);
+	UNUSED(b);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(s);
 
 	st = va_arg(t, char *);
 
 	if (st == NULL)
 	{
-		unused(p);
+		UNUSED(p);
 
 		st = ")NULL(";
 	}
@@ -135,11 +135,11 @@ int _rot(va_list t, char b[], int f, int w, int s, int p)
 	char out[] = "NOPQWSRTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	st = va_arg(t, char *);
-	unused(b);
-	unused(f);
-	unused(w);
-	unused(p);
-	unused(s);
+	UNUSED(b);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(p);
+	UNUSED(s);
 
 	if (st == NULL)
 		st = "(AHYY)";

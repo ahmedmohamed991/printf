@@ -14,7 +14,7 @@ int _char(va_list t, char b[], int w, int f, int p, int s)
 	char k;
 
 	k = va_arg(t, int);
-	return (handle_write_char(k, b, f, w, p, s));
+	return (_writechar(c, b, f, w, p, s));
 }
 
 /**
@@ -33,11 +33,11 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 	int l, i;
 
 	l = 0;
-	unused(b);
-	unused(f);
-	unused(w);
-	unused(p);
-	unused(s);
+	UNUSED(b);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(p);
+	UNUSED(s);
 	if (s == NULL)
 	{
 		s = "(null)";
@@ -82,12 +82,12 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
  */
 int _percent(va_list t, char b[], int f, int w, int p, int s)
 {
-	unused(t);
-	unused(b);
-	unused(f);
-	unused(w);
-	unused(p);
-	unused(s);
+	UNUSED(t);
+	UNUSED(b);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(p);
+	UNUSED(s);
 	return (write(1, "%%", 1));
 }
 /**
@@ -111,7 +111,7 @@ int _int(va_list t, char b[], int f, int s, int w, int p)
 	negative = 0;
 	a = va_arg(t, long int);
 
-	a = convert_size(a, s);
+	a = _size(n, s);
 
 	if (a == 0)
 		b[k--] = '0';
@@ -130,7 +130,7 @@ int _int(va_list t, char b[], int f, int s, int w, int p)
 		n /= 10;
 	}
 	k++;
-	return (write_numbers(negative, k, b, f, w, p, s));
+	return (_numbers(negative, k, b, f, w, p, s));
 }
 /**
  * _binary - prints an unsigned number
@@ -148,11 +148,11 @@ int _binary(va_list t, char b[], int f, int w, int s, int p)
 	unsigned int g, q, n, sum;
 	int c;
 
-	unused(b);
-	unused(f);
-	unused(w);
-	unused(p);
-	unused(s);
+	UNUSED(b);
+	UNUSED(f);
+	UNUSED(w);
+	UNUSED(p);
+	UNUSED(s);
 
 	n = va_arg(t, unsigned int);
 	q = 2147483648; /* (2 ^ 31)*/

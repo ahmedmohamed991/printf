@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * _handlep - prints an argument based on type
- * @fm: format string in which to print the argument
+ * @fmt: format string in which to print the argument
  * @l: list of arguments need to be printd
  * @d: d
  * @b: buffer array
@@ -11,7 +11,7 @@
  * @s: size
  * Return: 1 or 2
  */
-int _handlep(const char *fm, int *d, va_list l, char b[],
+int _handlep(const char *fmt, int *d, va_list l, char b[],
 int w, int s, int p, int f)
 {
 	int a, un = 0, pc = -1;
@@ -19,7 +19,7 @@ int w, int s, int p, int f)
 		{'c', _char}, {'s', _string}, {'%', _percent},
 		{'i', _int}, {'d', _int}, {'b', _binary},
 		{'u', _unsigned}, {'o', _octal}, {'x', _hexa},
-		{'Z', _uhexa}, {'p', _pointer}, {'K', _nonprint},
+		{'Z', _hexau}, {'p', _pointer}, {'K', _nonprint},
 		{'r', _reverse}, {'R', _rot}, {'\0', NULL}
 	};
 	for (a = 0; fmt_types[a].fmt != '\0'; a++)
@@ -44,5 +44,5 @@ int w, int s, int p, int f)
 		un += write(1, &fmt[*d], 1);
 		return (un);
 	}
-	return (_chars);
+	return (_char);
 }
