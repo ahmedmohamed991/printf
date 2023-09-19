@@ -7,7 +7,7 @@ void print_buffer(char b[], int *bd);
  */
 int _printf(const char *format, ...)
 {
-	int i, pr = 0, _chars = 0;
+	int i, pr = 0, _char = 0;
 	int f, w, p, s, bd = 0;
 	va_list l;
 	char b[buff];
@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 			if (bd == buff)
 				print_buffer(b, &bd);
 			/* write(1, &format[i], 1); */
-			_chars++;
+			_char++;
 		}
 		else
 		{
@@ -38,13 +38,13 @@ int _printf(const char *format, ...)
 			pr = _handlep(format, &i, l, b, f, w, p, s);
 			if (pr == -1)
 				return (-1);
-			_chars += pr;
+			_char += pr;
 		}
 	}
 	print_buffer(b, &bd);
 
 	va_end(l);
-	return (_chars);
+	return (_char);
 }
 /**
  * print_buffer - prints the contents of the buffer if it exist
