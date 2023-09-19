@@ -25,8 +25,7 @@ if (w > 1)
 	buffer[BUFF_SIZE - 1] = '\0';
 	for (x = 0; x < w - 1; x++)
 		buffer[BUFF_SIZE - x - 2] = a;
-
-	if (flag & F_MINUS)
+	if (f & F_MINUS)
 return (write(1, &buffer[0], 1) + write(1, &buffer[BUFF_SIZE - x - 1], w - 1));
 	else
 return (write(1, &buffer[BUFF_SIZE - x - 1], w - 1) + write(1, &buffer[0], 1));
@@ -45,7 +44,8 @@ return (write(1, &buffer[0], 1));
  * @s: size
  * Return: number of char printed
  */
-int write_number(int negative, int c, int s, int f, char buffer[], int width, int p)
+int write_number(int negative, int c, int s, int f,
+		char buffer[], int width, int p)
 {
 	char a = '', extra = 0;
 	int length = buffer_size - c - 1;
@@ -75,7 +75,8 @@ int write_number(int negative, int c, int s, int f, char buffer[], int width, in
  * @extra: extra char
  * Return: number of printed char
  */
-int write_num(int c, char buffer[], int f, int l, int p, int width, char a, char extra)
+int write_num(int c, char buffer[], int f, int l, int p,
+		int width, char a, char extra)
 {
 	int x, y = 1;
 
@@ -104,3 +105,61 @@ int write_num(int c, char buffer[], int f, int l, int p, int width, char a, char
 				buffer[c] = extra;
 			return (write(1, &buffer[1], x - 1) + write(1, &buffer[c], l));
 		}
+/**
+ * write_unsgnd - writes an unsigned num
+ * @negative: number indicating
+ * @c: index at which the number starts in buffer
+ * @buffer: Array of char
+ * @f: flags
+ * @width: width specifier
+ * @s: size
+ * @p: precision
+ * Return: number of written chars
+ */
+int write_unsgnd(int negative, int c, char  buffer[],
+		int f, int width, int p, int s)
+{
+	char a = ' ';
+	int i = 0, l = BUFF_SIZE - c - 1;
+
+	UNUSED(negative);
+	UNUSED(s);
+		if (p == 0 && c == BUFF_SIZE - s && buffer[c] == '0')
+			return (0);
+	if (p > 0 && p < l)
+		a = ' ';
+	while (p > l)
+	{
+		buffer[--c] = '0';
+		length++;
+	}
+	if ((f & FZERO) && !(f & F_MINUS))
+		a = '0';
+	if (width > l)
+	{
+		for (i = 0; i < width - l ; i++)
+			buffer[i] = a;
+		buffer[i] = '\0';
+		if (f & F_MINUS)
+		{
+			return (write(1, &buffer[c], l) + write(1, &buffer[0], i));
+			else
+			{
+				return (write(1, &buffer[0], i) + write(1, &buffer[c], l));
+			}}
+		return (write(1, &buffer[c], l));
+	}
+
+	/**
+	 * write_pointer - write a memory address
+	 * @buffer: arrayes
+	 * @c: the number starts in thhe buffer index
+	 * @l: length
+	 * @width: width specifire
+	 * @f: flags
+	 * @a: char padding
+	 * @extra: extra
+	 * @a2: index at which padding start
+	 * Return: number of written
+	 */
+
