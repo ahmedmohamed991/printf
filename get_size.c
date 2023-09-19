@@ -3,6 +3,7 @@
  *_getsize - Calculate the size
  *@format: formatted string in which to print the argg
  *@a: list of arg
+ *Return: precision
  */
 int _getsize(const char *format, int *a)
 {
