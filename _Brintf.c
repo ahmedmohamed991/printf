@@ -1,64 +1,61 @@
-#include"main.h"
-void print_buffer(char buffer[], int *x);
-
-
+#include "main.h"
+void print_buffer(char b[], int *bd);
 /**
- * _printf - printed function
- * @format: format.
- * Return: printed chars.
+ * _printf - printf function
+ * @format: format
+ *Return: printed char
  */
 int _printf(const char *format, ...)
 {
-
+	int i, pr = 0, _chars = 0;
+	int f, w, p, s, bd = 0;
 	va_list l;
+	char b[buff];
 
-	va_start(l, format)
 	if (format == NULL)
 		return (-1);
-	char buffer[buff];
-	int a = 0, i;
+
+	va_start(l, format);
 
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			buffer[a++] = format[i];
-			if (a == buff)
-				print_buffer(buffer, &a);
-			int _char++;
+			b[bd++] = format[i];
+			if (bd == buff)
+				print_buffer(b, &bd);
+			/* write(1, &format[i], 1); */
+			_chars++;
 		}
 		else
 		{
-			print_buffer(buffer, &a);
-			int f = _flags(format, &a);
-			int w = _width(format, &a, l);
-			int p = _precision(format, &i, l);
-			int s = _size(format, &i);
-i++;
-int pri = _handlep(format, &i, num, buffer, flags, width, precision, size);
-
-			if (pri == -1)
+			print_buffer(b, &bd);
+			d = _flags(format, &i);
+			w = _width(format, &i, l);
+			p = _precision(format, &i, l);
+			s = _size(format, &i);
+			++i;
+			pr = _handlep(format, &i, l, b, f, w, p, s);
+			if (pr == -1)
 				return (-1);
-			print_char += pri;
+			_chars += pr;
 		}
 	}
-	print_buffer(buffer, &x);
+	print_buffer(b, &bd);
 
 	va_end(l);
-
-	return (_char);
+	return (_chars);
 }
-
-
 /**
- * print_buffer - prints the contentes of the buffer if it exist
- * @buffer: array of chars
- * @x: index at which to add next char
+ * print_buffer - prints the contents of the buffer if it exist
+ * @b: array of chars
+ * @bd: index at which to add next char
  */
-void print_buffer(char buffer[], int x)
+void print_buffer(char b[], int *bd)
 {
-	if (*x > 0)
-		write(1, &buffer[0], *x);
-
-	*x = 0;
+	if (*bd > 0)
+		write(1, &b[0], *bd);
+	*bd = 0;
 }
+
+
