@@ -11,9 +11,9 @@
  */
 int _char(va_list t, char b[], int w, int f, int p, int s)
 {
-	char k;
+	char c;
 
-	k = va_arg(t, int);
+	c = va_arg(t, int);
 	return (_writechar(c, b, f, w, p, s));
 }
 
@@ -30,7 +30,7 @@ int _char(va_list t, char b[], int w, int f, int p, int s)
 int _string(va_list t, char b[], int f, int w, int s, int p)
 {
 	char *s = va_arg(t, char *);
-	int l, i;
+	int l, a;
 
 	l = 0;
 	UNUSED(b);
@@ -53,7 +53,7 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 		switch (f & fminus)
 		{
 			case 0:
-				for (i = w - l; i > 0; i--)
+				for (a = w - l; a > 0; a--)
 				{
 					write(1, " ", 1);
 				}
@@ -61,7 +61,7 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 				return (w);
 			case fminus:
 				write(1, &s[0], l);
-				for (i = w - l; i > 0; i--)
+				for (a = w - l; a > 0; a--)
 				{
 					write(1, " ", 1);
 				}
@@ -102,35 +102,35 @@ int _percent(va_list t, char b[], int f, int w, int p, int s)
  */
 int _int(va_list t, char b[], int f, int s, int w, int p)
 {
-	int k;
-	int negative;
-	long int a;
-	unsigned long int n;
+	int a;
+	int _negative;
+	long int n;
+	unsigned long int num;
 
-	k = buff - 2;
-	negative = 0;
-	a = va_arg(t, long int);
+	a = buff - 2;
+	_negative = 0;
+	n = va_arg(t, long int);
 
-	a = _size(n, s);
+	n = _size(n, s);
 
 	if (a == 0)
-		b[k--] = '0';
+		b[a--] = '0';
 	b[buff - 1] = '\0';
-	n = (unsigned long int)a;
+	num = (unsigned long int)n;
 
-	if (a < 0)
+	if (n < 0)
 	{
-		n = (unsigned long int)((-1) * a);
-		negative = 1;
+		num = (unsigned long int)((-1) * n);
+		_negative = 1;
 	}
 
-	while (n > 0)
+	while (num > 0)
 	{
-		b[k--] = (n % 10) + '0';
-		n /= 10;
+		b[a--] = (num % 10) + '0';
+		num /= 10;
 	}
-	k++;
-	return (_numbers(negative, k, b, f, w, p, s));
+	a++;
+	return (_numbers(_negative, a, b, f, w, p, s));
 }
 /**
  * _binary - prints an unsigned number
@@ -145,7 +145,7 @@ int _int(va_list t, char b[], int f, int s, int w, int p)
 int _binary(va_list t, char b[], int f, int w, int s, int p)
 {
 	unsigned int o[32];
-	unsigned int g, q, n, sum;
+	unsigned int a, q, n, sum;
 	int c;
 
 	UNUSED(b);
@@ -157,19 +157,19 @@ int _binary(va_list t, char b[], int f, int w, int s, int p)
 	n = va_arg(t, unsigned int);
 	q = 2147483648; /* (2 ^ 31)*/
 	o[0] = n / q;
-	for (g = 1; g < 32; g++)
+	for (a = 1; a < 32; a++)
 	{
 		q /= 2;
-		o[g] = (n / q) % 2;
+		o[a] = (n / q) % 2;
 	}
-	for (g = 0, sum = 0, c = 0; g < 32; g++)
+	for (a = 0, sum = 0, c = 0; a < 32; a++)
 	{
-		sum += o[g];
-		if (sum || g == 31)
+		sum += o[a];
+		if (sum || a == 31)
 		{
 			char r;
 
-			r = '0' + o[g];
+			r = '0' + o[a];
 			write(1, &r, 1);
 			c++;
 		}

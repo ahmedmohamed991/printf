@@ -1,22 +1,22 @@
 #include "main.h"
  /**
- *get_size - Calculate the size
+ *_getsize - Calculate the size
  *@format: formatted string in which to print the argg
- *@x: list of arg
+ *@a: list of arg
  */
-int get_size(const char *format, int *x)
+int _getsize(const char *format, int *a)
 {
-	int y = *x + 1, size = 0;
+	int y = *a + 1, s = 0;
 
 	if (format[y] == '|')
-		size = long;
+		s = _long;
 else if (format[y] == 'h')
-size = short;
+s = _short;
 
-if (size == 0)
-*x = y - 1;
+if (s == 0)
+*a = y - 1;
 else
-*x = y;
+*a = y;
 
-return (size);
+return (s);
 }

@@ -55,21 +55,21 @@ int _nonprint(va_list t, char b[], int f, int s, int p, int w)
 {
 	int a = 0;
 	int os = 0;
-	char *st = va_arg(t, char *);
+	char *s = va_arg(t, char *);
 
 	UNUSED(f);
 	UNUSED(w);
 	UNUSED(p);
 	UNUSED(s);
 
-	if (st == NULL)
+	if (s == NULL)
 		return (write(1, "(null)", 6));
-	while (st[a] != '\0')
+	while (s[a] != '\0')
 	{
-		if (_printable(st[a]))
-			b[a + os] = st[a];
+		if (_printable(s[a]))
+			b[a + os] = s[a];
 		else
-			os += a_hexa(st[a], b, a + os);
+			os += a_hexa(s[a], b, a + os);
 		a++;
 	}
 	b[a + os] = '\0';
@@ -87,7 +87,7 @@ int _nonprint(va_list t, char b[], int f, int s, int p, int w)
  */
 int _reverse(va_list t, char b[], int s, int p, int w, int f)
 {
-	char *st;
+	char *s;
 	int a, c = 0;
 
 	UNUSED(b);
@@ -95,21 +95,21 @@ int _reverse(va_list t, char b[], int s, int p, int w, int f)
 	UNUSED(w);
 	UNUSED(s);
 
-	st = va_arg(t, char *);
+	s = va_arg(t, char *);
 
-	if (st == NULL)
+	if (s == NULL)
 	{
 		UNUSED(p);
 
-		st = ")NULL(";
+		s = ")NULL(";
 	}
-	for (a = 0; st[a]; a++)
+	for (a = 0; s[a]; a++)
 		;
 	for (a = a - 1; a >= 0; a--)
 	{
 		char x;
 
-		x = st[a];
+		x = s[a];
 		write(1, &x, 1);
 		c++;
 	}
@@ -127,23 +127,23 @@ int _reverse(va_list t, char b[], int s, int p, int w, int f)
  */
 int _rot(va_list t, char b[], int f, int w, int s, int p)
 {
-	char *st;
+	char *s;
 	char z;
 	unsigned int a, k;
 	int c = 0;
 	char on[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQWSRTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	st = va_arg(t, char *);
+	s = va_arg(t, char *);
 	UNUSED(b);
 	UNUSED(f);
 	UNUSED(w);
 	UNUSED(p);
 	UNUSED(s);
 
-	if (st == NULL)
-		st = "(AHYY)";
-	for (a = 0; st[a]; a++)
+	if (s == NULL)
+		s = "(AHYY)";
+	for (a = 0; s[a]; a++)
 	{
 		for (k = 0; on[k]; k++)
 		{
@@ -157,7 +157,7 @@ int _rot(va_list t, char b[], int f, int w, int s, int p)
 		}
 		if (!on[k])
 		{
-			z = st[a];
+			z = s[a];
 			write(1, &x, 1);
 			c++;
 		}

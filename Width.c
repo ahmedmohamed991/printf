@@ -1,27 +1,27 @@
 #include "main.h"
 /**
  * _width - compute the width for printing
- * @f: format string in which to print the arguments
- * @i: list of arguments to be printed
+ * @format: format string in which to print the arguments
+ * @a: list of arguments to be printed
  * @l: list of arguments
  * Return: width
  */
-int _width(const char *f, int *a, va_list l)
+int _width(const char *format, int *a, va_list l)
 {
 	int w = 0;
-	int ci;
+	int y;
 
-	while (f[ci] != '\0')
+	while (format[y] != '\0')
 	{
-		if (__digit(f[ci]))
+		if (__digit(format[y]))
 		{
 			w *= 10;
-			w += f[ci] - '0';
-			ci++;
+			w += format[y] - '0';
+			y++;
 		}
-		else if (f[ci] == '*')
+		else if (format[y] == '*')
 		{
-			ci++;
+			y++;
 			w = va_arg(l, int);
 			break;
 		}
@@ -30,6 +30,6 @@ int _width(const char *f, int *a, va_list l)
 			break;
 		}
 	}
-	*a = ci - 1;
+	*a = y - 1;
 	return (w);
 }

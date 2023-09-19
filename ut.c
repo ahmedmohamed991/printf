@@ -12,22 +12,22 @@ int _printable(char c)
 	return (0);
 }
 /**
- * _hexa - append ascii in hexa code to buffer
+ * a_hexa - append ascii in hexa code to buffer
  * @b: array of buffer
- * @i: index
+ * @a: index
  * @ascii: ASSCI CODE
  * Return: Always 3
  */
-int _hexa(char ascii, char b[], int i)
+int a_hexa(char ascii, char b[], int a)
 {
 	char _ma[] = "0123456789ABCDEF";
 
 	if (ascii < 0)
 		ascii *= -1;
-	b[i++] = '\\';
-	b[i++] = 'x';
-	b[i++] = _ma[ascii / 16];
-	b[i] = _ma[ascii % 16];
+	b[a++] = '\\';
+	b[a++] = 'x';
+	b[a++] = _ma[ascii / 16];
+	b[a] = _ma[ascii % 16];
 
 	return (3);
 }

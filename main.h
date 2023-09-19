@@ -35,7 +35,7 @@ int (*fn)(va_list, char[], int, int, int, int);
  */
 typedef struct fmt fmt_t;
 int _printf(const char *format, ...);
-int _handlep(const char *fm, int *d, va_list l, char b[]
+int _handlep(const char *fmt, int *a, va_list l, char b[]
 , int f, int w, int s, int p);
 int _char(va_list t, char b[],
 int f, int w, int p, int s);
@@ -61,9 +61,9 @@ int f, int w, int s, int p);
 int _pointer(va_list t, char b[],
 int f, int w, int p, int s);
 int _flags(const char *format, int *a);
-int _width(const char *f, int *a, va_list l);
-int _precision(const char *f, int *a, va_list l);
-int _size(const char *f, int *a);
+int _width(const char *format, int *a, va_list l);
+int _precision(const char *format, int *a, va_list l);
+int _getsize(const char *format, int *a);
 int _reverse(va_list t, char b[],
 int f, int w, int s, int p);
 int _rot(va_list t, char b[],

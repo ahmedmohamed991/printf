@@ -7,7 +7,7 @@ void print_buffer(char b[], int *bd);
  */
 int _printf(const char *format, ...)
 {
-	int i, pr = 0, _char = 0;
+	int a, pr = 0, _char = 0;
 	int f, w, p, s, bd = 0;
 	va_list l;
 	char b[buff];
@@ -17,25 +17,25 @@ int _printf(const char *format, ...)
 
 	va_start(l, format);
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	for (a = 0; format && format[a] != '\0'; a++)
 	{
-		if (format[i] != '%')
+		if (format[a] != '%')
 		{
-			b[bd++] = format[i];
+			b[bd++] = format[a];
 			if (bd == buff)
 				print_buffer(b, &bd);
-			/* write(1, &format[i], 1); */
+			/* write(1, &format[a], 1); */
 			_char++;
 		}
 		else
 		{
 			print_buffer(b, &bd);
-			d = _flags(format, &i);
-			w = _width(format, &i, l);
-			p = _precision(format, &i, l);
-			s = _size(format, &i);
-			++i;
-			pr = _handlep(format, &i, l, b, f, w, p, s);
+			d = _flags(format, &a);
+			w = _width(format, &a, l);
+			p = _precision(format, &a, l);
+			s = _size(format, &a);
+			++a;
+			pr = _handlep(format, &a, l, b, f, w, p, s);
 			if (pr == -1)
 				return (-1);
 			_char += pr;

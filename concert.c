@@ -1,119 +1,144 @@
 #include "main.h"
 
 /**
- * print_unsigned - prints an unsigned number
- * @x: list of arguments
- * @buffer: Buffer array to handel print
+ * _unsigned - prints an unsigned number
+ * @t: list of arguments
+ * @b: Buffer array to handel print
  * @f: calculate active flags
- * @width: get width
+ * @w: get width
  * @p: Precision sp
  * @s: size specifir
  * Return: number of chars printed
  */
-int print_unsigned(va_list x, char buffer[], int width, int f, int s, int p)
+int _unsigned(va_list t, char b[], int w, int f, int s, int p)
 {
-	unsigned long int num = va_arg(x, unsigned long int);
-	int a = size - 2;
+	unsigned long int n = va_arg(t, unsigned long int);
+	int a = buff - 2;
 
-	num = convert_size_unsgned(num, s);
+	n = _convert(n, s);
 
-	if (num == 0)
+	if (n == 0)
 		buffer[a--] = '0';
-	buffer[size - 1] = '\0';
+	buffer[buff - 1] = '\0';
 
-	while (num > 0)
+	while (n > 0)
 	{
-		buffer[a--] = (num % 10) + '0';
-		num /= 10;
+		buffer[a--] = (n % 10) + '0';
+		n /= 10;
 	}
 
-	i++;
-	return (write_unsgned(0, a, buffer, f, width, p, s));
+	a++;
+	return (_unsgnd(0, a, b, f, w, p, s));
 }
 
 /**
- * print_octal - printed octal number
- * @x: list of arguments
- * @buffer: Buffer array to handel print
+ * _octal - printed octal number
+ * @t: list of arguments
+ * @b: Buffer array to handel print
  * @f: calculate active flags
- * @width: get width
+ * @w: get width
  * @p: precision
  * @s: size specifir
  * Return: number of chars printed
  */
-int print_octal(va_list x, char buffer[], int width, int p, int f, int s)
+int _octal(va_list t, char b[], int w, int p, int f, int s)
 {
-	unsigned long int num = va_arg(x, unsigned long int);
-	unsigned long int num2 = num;
-	int a = size - 2;
+	unsigned long int n = va_arg(t, unsigned long int);
+	unsigned long int num2 = n;
+	int a = buff - 2;
 
-	UNUSED(width);
+	UNUSED(w);
 
-	num = convert_size_unsgned(num, s);
+	n = _convert(n, s);
 
-	if (num == 0)
-		buffer[a--] = '0';
+	if (n == 0)
+		b[a--] = '0';
 
-		buffer[size - 1] = '\0';
+		b[buff - 1] = '\0';
 
-		while (num > 0)
+		while (n > 0)
 		{
-			buffer[a--] = (num % 8) + '0';
-			num /= 8;
+			b[a--] = (n % 8) + '0';
+			n /= 8;
 		}
 
-		if (f & F_HASH && num2 != 0)
-			buffer[a--] = '0';
+		if (f & fhash && num2 != 0)
+			b[a--] = '0';
 
 		a++;
 
-		return (write_unsgned(0, a, buffer, width, size, p, f));
+		return (_unsgnd(0, a, b, f, w, p, s));
 }
 
 /**
- *print_hexadecimal - print hexadecimal num
- * @x: list of argument
- * @buffer: buffer array to handle print
+ *_hexa - print hexadecimal num
+ * @t: list of argument
+ * @b: buffer array to handle print
  * @f: calculate active flags
- * @width: get width
+ * @w: get width
  * @p: precision
  * @s: size specifier
  * Return: number of chars printed
  */
-int print_hexadecimal(va_list x, char buffer[], int width, int s, int p, int f)
+int _hexa(va_list t, char b[], int w, int s, int p, int f)
 {
-	return (print_hexa(x, "01234556789abcdef", buffer, width, p, s, f, 'x'));
+	return (_h(t, "01234556789abcdef", b, w, p, s, f, 'x'));
 }
-
-int print_hexa(va_list x, char buffer[], int f, char y[]
-		, int width, int p, int s, char f_ch)
+/**
+ * _hexau - prints an unsigned number in upper hexa
+ * @t: list of arguments
+ * @b: buffer array to handle print
+ * @f: calculates flags
+ * @w: width
+ * @p: precision
+ * @s: size
+ * Return: number of chars printed
+ */
+int _hexau(va_list t, char b[], int f,
+int w, int p, int s)
+{
+return (_h(t, "012345789ABCDEF", b, f, 'X', w, p, s));
+}
+/**
+ * _h - prints a hexadecimal in lower or upper
+ * @t: list of arguments
+ * @ma: array of values to map the number
+ * @b: buffer array
+ * @f: flgs to calculate
+ * @w: width
+ * @s: size
+ * @p: precision
+ * Return: number of chars printed
+ */
+int _h(va_list t, char ma[], char b[], int f
+		, int w, int p, int s, char f_ch)
 
 {
-	unsigned long int num = va_arg(x, unsigned long int);
-	unsigned long int num2 = num;
-	int a = size - 2;
+	unsigned long int n = va_arg(t, unsigned long int);
+	unsigned long int num2 = n;
+	int a = buff - 2;
 
-	UNUSED(width);
+	UNUSED(w);
 
-	num = convert_size_unsgnd(num, size);
+	n = _convert(n, s);
 
-	if (num == 0)
-		buffer[a--] = '0';
+	if (n == 0)
+		b[a--] = '0';
 
-	buffer[size - 1] = '\0';
+	b[buff - 1] = '\0';
 
-	while (num > 0)
+	while (n > 0)
 	{
-		buffer[a--] = y[num % 16];
-		num /= 16;
+		b[a--] = ma[n % 16];
+		n /= 16;
 	}
-	if (f && F_HASH && num2 != 0)
+	if (f && fhash && num2 != 0)
 	{
-		buffer[a--] = y;
-		buffer[a--] = '0';
+		b[a--] = ma;
+		b[a--] = '0';
 	}
 
 	a++;
 
-	return (write_unsgned(0, a, buffer, width, s, p, f));
+	return (_unsgnd(0, a, b, w, s, p, f));
 }
