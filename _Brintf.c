@@ -10,32 +10,32 @@ void print_buffer(char buffer[], int *x);
 int _printf(const char *format, ...)
 {
 
-	va_list num;
+	va_list l;
 
-	va_start(num, format);
+	va_start(l, format)
 	if (format == NULL)
 		return (-1);
-	char buffer[size];
-	int x = 0, i;
+	char buffer[buff];
+	int a = 0, i;
 
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			buffer[x++] = format[i];
-			if (x == size)
-				print_buffer(buffer, &x);
-			int print_char++;
+			buffer[a++] = format[i];
+			if (a == buff)
+				print_buffer(buffer, &a);
+			int _char++;
 		}
 		else
 		{
-			print_buffer(buffer, &x);
-			int f = get_flags(format, &i);
-			int width = get_width(format, &i, num);
-			int pr = get_precision(format, &i, num);
-			int size = get_size(format, &i);
+			print_buffer(buffer, &a);
+			int f = _flags(format, &a);
+			int w = _width(format, &a, l);
+			int p = _precision(format, &i, l);
+			int s = _size(format, &i);
 i++;
-int pri = handle_print(format, &i, num, buffer, flags, width, precision, size);
+int pri = _handlep(format, &i, num, buffer, flags, width, precision, size);
 
 			if (pri == -1)
 				return (-1);
@@ -44,9 +44,9 @@ int pri = handle_print(format, &i, num, buffer, flags, width, precision, size);
 	}
 	print_buffer(buffer, &x);
 
-	va_end(num);
+	va_end(l);
 
-	return (print_char);
+	return (_char);
 }
 
 
