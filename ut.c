@@ -57,7 +57,7 @@ long int _size(long int n, int s)
 		return ((short)n);
 	return ((int)n);
 }
-/***
+/**
  * _convert - casts a number to the specified size
  * @s: number indicate the type to be cast
  * @n: number to be casted
