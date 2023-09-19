@@ -104,7 +104,7 @@ return (_h(t, "012345789ABCDEF", b, f, 'X', w, p, s));
  * @t: list of arguments
  * @ma: array of values to map the number
  * @b: buffer array
- * @f: flgs to calculate
+ * @f: flags to calculate
  * @w: width
  * @s: size
  * @p: precision
