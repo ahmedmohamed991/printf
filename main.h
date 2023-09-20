@@ -67,7 +67,7 @@ int _pointer(va_list t, char b[], int f, int w, int p, int s);
 int _nonprint(va_list t, char b[],
 int f, int w, int s, int p);
 int write_pointer(char b[], int d, int l,
-int w, int f, char pa, char ec, int pas);
+int w, int f, char pa, char ec, int ps);
 int _printable(char);
 int a_hexa(char, char [], int);
 int _reverse(va_list t, char b[], int f, int w, int p, int s);
