@@ -11,7 +11,7 @@
  */
 int _pointer(va_list t, char b[], int f, int w, int p, int s)
 {
-	int d = buff - 2, l = 2, ps = 1; /*l = 2, for '0x'*/
+	int d = buff - 2, l = 2, ps = 1;
 	char ec = 0, pa = ' ';
 	unsigned long n;
 	char ma[] = "0123456789abcdef";
@@ -38,7 +38,6 @@ int _pointer(va_list t, char b[], int f, int w, int p, int s)
 	else if (f & fspace)
 		ec = ' ', l++;
 	d++;
-	/*return (write(1, &b[a], buff - a - 1));*/
 	return (write_pointer(b, d, l, w, f, pa, ec, ps));
 }
 /**
