@@ -1,106 +1,106 @@
 #include "main.h"
 /**
- * handle_write_char - Prints a string in function
+ * _writechar - Prints a string in function
  * @c: char type
- * @buffer: buffer array
+ * @b: buffer array
  * @w: width
  * @p: precision
- * @flag: calculate flags
- * @size: number of chars printed
+ * @f: calculate flags
+ * @s: number of chars printed
  * Return: number of char printed
  */
-int handle_write_char(char c, char buffer[], int w, int size, int flag, int p)
+int _writechar(char c, char b[], int w, int s, int f, int p)
 {
 UNUSED(p);
-UNUSED(size);
-int x = 0, char a = '';
+UNUSED(s);
+int a = 0, char pa = ' ';
 
-if (flag & F_ZERO)
-	a = '0';
-buffer[x++] = c;
-buffer[i] = '\0';
+if (f & fzero)
+	pa = '0';
+b[a++] = c;
+b[a] = '\0';
 
 if (w > 1)
 {
-	buffer[BUFF_SIZE - 1] = '\0';
-	for (x = 0; x < w - 1; x++)
-		buffer[BUFF_SIZE - x - 2] = a;
+	b[buff - 1] = '\0';
+	for (a = 0; a < w - 1; a++)
+		b[buff - a - 2] = pa;
 
-	if (flag & F_MINUS)
-return (write(1, &buffer[0], 1) + write(1, &buffer[BUFF_SIZE - x - 1], w - 1));
+	if (f & fminus)
+return (write(1, &b[0], 1) + write(1, &b[buff - a - 1], w - 1));
 	else
-return (write(1, &buffer[BUFF_SIZE - x - 1], w - 1) + write(1, &buffer[0], 1));
+return (write(1, &b[buff - a - 1], w - 1) + write(1, &b[0], 1));
 }
-return (write(1, &buffer[0], 1));
+return (write(1, &b[0], 1));
 }
 
 /**
- * write_number - prints a string
- * @negative: lista of arg
+ * _numbers - prints a string
+ * @_negative: lista of arg
  * @c: char type
- * @buffer: buffer array
- * @width: get width
+ * @b: buffer array
+ * @w: get width
  * @f: clculate  flags
  * @p: precision specifier
  * @s: size
  * Return: number of char printed
  */
-int write_number(int negative, int c, int s, int f, char buffer[], int width, int p)
+int _numbers(int _negative, int c, int s, int f, char b[], int w, int p)
 {
-	char a = '', extra = 0;
-	int length = buffer_size - c - 1;
+	char pa = ' ', ec = 0;
+	int l = buff - c - 1;
 
 	UNUSED(s);
 
-	if ((f & F_zero) && !(f & F_MINUS))
-		a = '0';
-	if (negative)
-		extra = '-';
-	else if (f & F_PLUS)
-		extra = '+';
-	else if (f & F_SPACE)
-		extra = ' ';
+	if ((f & fzero) && !(f & fminus))
+		pa = '0';
+	if (_negative)
+		ec = '-';
+	else if (f & fplus)
+		ec = '+';
+	else if (f & fspace)
+		ec = ' ';
 
-	return (write_num(c, buffer, f, width, p, length, a, extra));
+	return (_num(c, b, f, w, p, l, pa, ec));
 }
 /**
- * write_num - write a number using a buffer
- * @c: index at which the number starts on the buffer
- * @buffer: buffer
+ * _num - write a number using a buffer
+ * @d: index at which the number starts on the buffer
+ * @b: buffer
  * @f: flags
  * @l: number length
  * @p: precision
- * @a: pading
- * @width: get width
- * @extra: extra char
+ * @pa: pading
+ * @w: get width
+ * @ec: extra char
  * Return: number of printed char
  */
-int write_num(int c, char buffer[], int f, int l, int p, int width, char a, char extra)
+int _num(int d, char b[], int f, int l, int p, int w, char pa, char ec)
 {
-	int x, y = 1;
+	int a, ps = 1;
 
-	if (p == 0 && c == size - 2 && buffer[c] == '0' && width == 0)
+	if (p == 0 && d == buff - 2 && b[d] == '0' && w == 0)
 		return (0);
-	if (prec == 0 && c == size - 2 && buffer[c] == '0')
-		buffer[c] = a = ' ';
+	if (p == 0 && d == buff - 2 && b[d] == '0')
+		b[d] = pa = ' ';
 	while (p > l)
-		buffer[--c] = '0', l++;
-	if (extra != 0)
+		b[--d] = '0', l++;
+	if (ec != 0)
 		l++;
-	if (width > l)
+	if (w > l)
 	{
-		for (x = 1; x < width - l + 1; x++)
-			buffer[x] = a;
-		buffer[x] = '\0';
-		if (f & F_MINUS && a == '')
+		for (a = 1; a < w - l + 1; a++)
+			b[a] = pa;
+		b[a] = '\0';
+		if (f & fminus && pa == ' ')
 		{
-			if (extra)
-				buffer[--c] = extra;
-			return (write(1, &buffer[c], l) + write(1, &buffer[1], x - 1));
+			if (ec)
+				b[--d] = ec;
+			return (write(1, &b[d], l) + write(1, &b[1], x - 1));
 		}
-		else if (!(flags & FMINUS) && a == '')
+		else if (!(f & fminus) && pa == ' ')
 		{
-			if (extra)
-				buffer[c] = extra;
-			return (write(1, &buffer[1], x - 1) + write(1, &buffer[c], l));
+			if (ec)
+				b[d] = ec;
+			return (write(1, &b[1], x - 1) + write(1, &b[d], l));
 		}
