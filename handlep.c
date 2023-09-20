@@ -12,7 +12,7 @@
  * Return: 1 or 2
  */
 int _handlep(const char *fmt, int *d, va_list l, char b[],
-int w, int s, int p, int f)
+int f, int w, int s, int p)
 {
 	int a, un = 0, _char = -1;
 	fmt_t fmt_types[] = {

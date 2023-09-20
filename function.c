@@ -9,7 +9,7 @@
  * @p: precision
  * Return: number of chars printed
  */
-int _pointer(va_list t, char b[], int f, int w, int s, int p)
+int _pointer(va_list t, char b[], int f, int w, int p, int s)
 {
 	int d = buff - 2, l = 2, ps = 1; /*l = 2, for '0x'*/
 	char ec = 0, pa = ' ';
@@ -51,7 +51,7 @@ int _pointer(va_list t, char b[], int f, int w, int s, int p)
  * @f: flags
  * Return: number of chars printed
  */
-int _nonprint(va_list t, char b[], int f, int s, int p, int w)
+int _nonprint(va_list t, char b[], int f, int w, int p, int s)
 {
 	int a = 0;
 	int os = 0;
@@ -85,7 +85,7 @@ int _nonprint(va_list t, char b[], int f, int s, int p, int w)
  * @f: flags
  * Return: number of chars printed
  */
-int _reverse(va_list t, char b[], int s, int p, int w, int f)
+int _reverse(va_list t, char b[], int f, int w, int p, int s)
 {
 	char *s;
 	int a, c = 0;

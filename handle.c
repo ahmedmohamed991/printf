@@ -9,7 +9,7 @@
  * @p: precision identification
  *Return: number of chars printed
  */
-int _char(va_list t, char b[], int w, int f, int p, int s)
+int _char(va_list t, char b[], int f, int w, int p, int s)
 {
 	char c;
 
@@ -100,7 +100,7 @@ int _percent(va_list t, char b[], int f, int w, int p, int s)
  * @f: flags
  * Return: number of chars printed
  */
-int _int(va_list t, char b[], int f, int s, int w, int p)
+int _int(va_list t, char b[], int f, int w, int p, int s)
 {
 	int a;
 	int _negative;
@@ -142,7 +142,7 @@ int _int(va_list t, char b[], int f, int s, int w, int p)
  * @p: precision
  * Return: number of chars printed
  */
-int _binary(va_list t, char b[], int f, int w, int s, int p)
+int _binary(va_list t, char b[], int f, int w, int p, int s)
 {
 	unsigned int o[32];
 	unsigned int a, q, n, sum;

@@ -10,7 +10,7 @@
  * @s: size specifir
  * Return: number of chars printed
  */
-int _unsigned(va_list t, char b[], int w, int f, int s, int p)
+int _unsigned(va_list t, char b[], int f, int w, int p, int s)
 {
 	unsigned long int n = va_arg(t, unsigned long int);
 	int a = buff - 2;
@@ -18,12 +18,12 @@ int _unsigned(va_list t, char b[], int w, int f, int s, int p)
 	n = _convert(n, s);
 
 	if (n == 0)
-		buffer[a--] = '0';
-	buffer[buff - 1] = '\0';
+		b[a--] = '0';
+	b[buff - 1] = '\0';
 
 	while (n > 0)
 	{
-		buffer[a--] = (n % 10) + '0';
+		b[a--] = (n % 10) + '0';
 		n /= 10;
 	}
 
@@ -41,7 +41,7 @@ int _unsigned(va_list t, char b[], int w, int f, int s, int p)
  * @s: size specifir
  * Return: number of chars printed
  */
-int _octal(va_list t, char b[], int w, int p, int f, int s)
+int _octal(va_list t, char b[], int f, int w, int p, int s)
 {
 	unsigned long int n = va_arg(t, unsigned long int);
 	unsigned long int num2 = n;
@@ -80,9 +80,9 @@ int _octal(va_list t, char b[], int w, int p, int f, int s)
  * @s: size specifier
  * Return: number of chars printed
  */
-int _hexa(va_list t, char b[], int w, int s, int p, int f)
+int _hexa(va_list t, char b[], int f, int w, int p, int s)
 {
-	return (_h(t, "01234556789abcdef", b, w, p, s, f, 'x'));
+	return (_h(t, "01234556789abcdef", b, f, w, p, s, 'x'));
 }
 /**
  * _hexau - prints an unsigned number in upper hexa
@@ -105,13 +105,14 @@ return (_h(t, "012345789ABCDEF", b, f, 'X', w, p, s));
  * @ma: array of values to map the number
  * @b: buffer array
  * @f: flags to calculate
+ * @fc: calculates active flags
  * @w: width
  * @s: size
  * @p: precision
  * Return: number of chars printed
  */
 int _h(va_list t, char ma[], char b[], int f
-		, int w, int p, int s, char f_ch)
+		, char fc, int w, int p, int s)
 
 {
 	unsigned long int n = va_arg(t, unsigned long int);

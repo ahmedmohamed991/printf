@@ -17,7 +17,7 @@ int _flags(const char *format, int *a)
 	{
 		for (j = 0; flag1[j] != '\0'; j++)
 			if (format[y] == flag1[j])
-				flag |= flags_array[j];
+				f |= flags_array[j];
 		break;
 	}
 	if (flag1[j] == 0)
