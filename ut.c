@@ -53,7 +53,7 @@ long int _size(long int n, int s)
 {
 	if (s == _long)
 		return (n);
-	else if (size == _short)
+	else if (s == _short)
 		return ((short)n);
 	return ((int)n);
 }

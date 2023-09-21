@@ -25,7 +25,7 @@ int _writechar(char c, char b[], int f
 
 	if (w > 1)
 	{
-		c[buff - 1] = '\0';
+		b[buff - 1] = '\0';
 		for (a = 0; a < w - 1; a++)
 			b[buff - a - 2] = pa;
 		if (f & fminus)
@@ -84,7 +84,8 @@ int p, int l, char pa, char ec)
 	if (p == 0 && d == buff - 2 && b[d] == '0' && w == 0)
 		return (0);
 	if (p == 0 && d == buff - 2 && b[d] == '0')
-		b[d] == pa = ' ';
+	pa = ' ';
+		b[d] == pa;
 	if (p > 0 && p < l)
 		pa = ' ';
 	while (p > l)
@@ -149,12 +150,12 @@ int _unsgnd(int _negative, int d, char b[],
 		l++;
 	}
 	if ((f & fzero) && !(f & fminus))
-		pa '0';
+		pa = '0';
 	if (w > l)
 	{
 		for (a = 0; a < w - l; a++)
 			b[a] = pa;
-		b[a] '\0';
+		b[a] = '\0';
 		if (f & fminus)
 		{
 			return (write(1, &b[d], l) + write(1, &b[0], a));

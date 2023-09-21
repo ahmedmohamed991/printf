@@ -15,14 +15,18 @@ int _flags(const char *format, int *a)
 
 	for (y = *a + 1; format[y] != '\0'; y++)
 	{
+		int found_flag = 0;
+
 		for (j = 0; flag1[j] != '\0'; j++)
 			if (format[y] == flag1[j])
+			{
 				f |= flags_array[j];
+				found_flag = 1;
+				break;
+				}
+	if (!found_flag)
 		break;
 	}
-	if (flag1[j] == 0)
-		break;
-}
 *a = y - 1;
 
 return (f);

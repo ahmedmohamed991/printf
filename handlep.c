@@ -14,7 +14,7 @@
 int _handlep(const char *fmt, int *d, va_list l, char b[],
 int f, int w, int s, int p)
 {
-	int a, un = 0, _char = -1;
+	int a, un = 0, chars = -1;
 	fmt_t fmt_types[] = {
 		{'c', _char}, {'s', _string}, {'%', _percent},
 		{'i', _int}, {'d', _int}, {'b', _binary},
@@ -37,12 +37,12 @@ int f, int w, int s, int p)
 			--(*d);
 			while (fmt[*d] != ' ' && fmt[*d] != '%')
 				--(*d);
-			if (fmt[*d] == " ")
+			if (fmt[*d] == ' ')
 				--(*d);
 			return (1);
 		}
 		un += write(1, &fmt[*d], 1);
 		return (un);
 	}
-	return (_char);
+	return (chars);
 }

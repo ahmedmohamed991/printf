@@ -29,7 +29,7 @@ int _char(va_list t, char b[], int f, int w, int p, int s)
  */
 int _string(va_list t, char b[], int f, int w, int s, int p)
 {
-	char *s = va_arg(t, char *);
+	char *s2 = va_arg(t, char *);
 	int l, a;
 
 	l = 0;
@@ -38,13 +38,13 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 	UNUSED(w);
 	UNUSED(p);
 	UNUSED(s);
-	if (s == NULL)
+	if (s2 == NULL)
 	{
-		s = "(null)";
+		s2 = "(null)";
 		if (p >= 6)
-			s = " ";
+			s2 = " ";
 	}
-	while (s[l] != '\0')
+	while (s2[l] != '\0')
 		l++;
 	if (p >= 0 && p < l)
 		l = p;
@@ -57,10 +57,10 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 				{
 					write(1, " ", 1);
 				}
-				write(1, &s[0], l);
+				write(1, &s2[0], l);
 				return (w);
 			case fminus:
-				write(1, &s[0], l);
+				write(1, &s2[0], l);
 				for (a = w - l; a > 0; a--)
 				{
 					write(1, " ", 1);
@@ -68,7 +68,7 @@ int _string(va_list t, char b[], int f, int w, int s, int p)
 				return (w);
 		}
 	}
-	return (write(1, s, l));
+	return (write(1, s2, l));
 }
 /**
  * _percent - prints a percent sign

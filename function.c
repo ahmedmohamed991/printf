@@ -54,25 +54,25 @@ int _nonprint(va_list t, char b[], int f, int w, int p, int s)
 {
 	int a = 0;
 	int os = 0;
-	char *s = va_arg(t, char *);
+	char *s2 = va_arg(t, char *);
 
 	UNUSED(f);
 	UNUSED(w);
 	UNUSED(p);
 	UNUSED(s);
 
-	if (s == NULL)
+	if (s2 == NULL)
 		return (write(1, "(null)", 6));
-	while (s[a] != '\0')
+	while (s2[a] != '\0')
 	{
-		if (_printable(s[a]))
-			b[a + os] = s[a];
+		if (_printable(s2[a]))
+			b[a + os] = s2[a];
 		else
-			os += a_hexa(s[a], b, a + os);
+			os += a_hexa(s2[a], b, a + os);
 		a++;
 	}
 	b[a + os] = '\0';
-	return (write(1, b, i + os));
+	return (write(1, b, a + os));
 }
 /**
  * _reverse - print reverse string
@@ -86,7 +86,7 @@ int _nonprint(va_list t, char b[], int f, int w, int p, int s)
  */
 int _reverse(va_list t, char b[], int f, int w, int p, int s)
 {
-	char *s;
+	char *s2;
 	int a, c = 0;
 
 	UNUSED(b);
@@ -94,21 +94,21 @@ int _reverse(va_list t, char b[], int f, int w, int p, int s)
 	UNUSED(w);
 	UNUSED(s);
 
-	s = va_arg(t, char *);
+	s2 = va_arg(t, char *);
 
-	if (s == NULL)
+	if (s2 == NULL)
 	{
 		UNUSED(p);
 
-		s = ")NULL(";
+		s2 = ")NULL(";
 	}
-	for (a = 0; s[a]; a++)
+	for (a = 0; s2[a]; a++)
 		;
 	for (a = a - 1; a >= 0; a--)
 	{
 		char x;
 
-		x = s[a];
+		x = s2[a];
 		write(1, &x, 1);
 		c++;
 	}
@@ -126,38 +126,38 @@ int _reverse(va_list t, char b[], int f, int w, int p, int s)
  */
 int _rot(va_list t, char b[], int f, int w, int s, int p)
 {
-	char *s;
+	char *s2;
 	char z;
 	unsigned int a, k;
 	int c = 0;
 	char on[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char out[] = "NOPQWSRTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	s = va_arg(t, char *);
+	s2 = va_arg(t, char *);
 	UNUSED(b);
 	UNUSED(f);
 	UNUSED(w);
 	UNUSED(p);
 	UNUSED(s);
 
-	if (s == NULL)
-		s = "(AHYY)";
-	for (a = 0; s[a]; a++)
+	if (s2 == NULL)
+		s2 = "(AHYY)";
+	for (a = 0; s2[a]; a++)
 	{
 		for (k = 0; on[k]; k++)
 		{
-			if (on[k] == st[a])
+			if (on[k] == s2[a])
 			{
 				z = out[k];
-				write(1, &x, 1);
+				write(1, &z, 1);
 				c++;
 				break;
 			}
 		}
 		if (!on[k])
 		{
-			z = s[a];
-			write(1, &x, 1);
+			z = s2[a];
+			write(1, &z, 1);
 			c++;
 		}
 	}

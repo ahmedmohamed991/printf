@@ -74,7 +74,7 @@ int _reverse(va_list t, char b[], int f, int w, int p, int s);
 int _rot(va_list t, char b[], int f, int w, int s, int p);
 int _flags(const char *format, int *a);
 int _precision(const char *format, int *a, va_list l);
-int _digit(char);
+int _digit(char c);
 int _getsize(const char *format, int *a);
 int _width(const char *format, int *a, va_list l);
 int _num(int d, char b[], int f, int w, int p, int l, char pa, char ec);

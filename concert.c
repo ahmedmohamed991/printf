@@ -135,7 +135,7 @@ int _h(va_list t, char ma[], char b[], int f
 	}
 	if (f && fhash && num2 != 0)
 	{
-		b[a--] = ma;
+		b[a--] = fc;
 		b[a--] = '0';
 	}
 

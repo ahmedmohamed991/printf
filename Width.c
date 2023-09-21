@@ -11,13 +11,12 @@ int _width(const char *format, int *a, va_list l)
 	int w = 0;
 	int y;
 
-	while (format[y] != '\0')
+	for (y = *a + 1; format[y] != '\0'; y++)
 	{
-		if (__digit(format[y]))
+		if (_digit(format[y]))
 		{
 			w *= 10;
 			w += format[y] - '0';
-			y++;
 		}
 		else if (format[y] == '*')
 		{
@@ -26,10 +25,9 @@ int _width(const char *format, int *a, va_list l)
 			break;
 		}
 		else
-		{
 			break;
 		}
-	}
+
 	*a = y - 1;
 	return (w);
 }
