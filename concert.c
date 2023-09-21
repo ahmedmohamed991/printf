@@ -53,9 +53,7 @@ int _octal(va_list t, char b[], int f, int w, int p, int s)
 
 	if (n == 0)
 		b[a--] = '0';
-
-		b[buff - 1] = '\0';
-
+	b[buff - 1] = '\0';
 		while (n > 0)
 		{
 			b[a--] = (n % 8) + '0';
@@ -66,7 +64,6 @@ int _octal(va_list t, char b[], int f, int w, int p, int s)
 			b[a--] = '0';
 
 		a++;
-
 		return (_unsgnd(0, a, b, f, w, p, s));
 }
 

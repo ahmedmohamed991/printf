@@ -85,7 +85,7 @@ int p, int l, char pa, char ec)
 		return (0);
 	if (p == 0 && d == buff - 2 && b[d] == '0')
 	pa = ' ';
-		b[d] == pa;
+		b[d] = pa;
 	if (p > 0 && p < l)
 		pa = ' ';
 	while (p > l)

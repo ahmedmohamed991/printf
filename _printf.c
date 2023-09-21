@@ -8,7 +8,7 @@ void print_buffer(char b[], int *bd);
 int _printf(const char *format, ...)
 {
 	int a, pr = 0, _char = 0;
-	int f, w, p, s, d, bd = 0;
+	int f, w, p, s, bd = 0;
 	va_list l;
 	char b[buff];
 
@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 		else
 		{
 			print_buffer(b, &bd);
-			d = _flags(format, &a);
+			f = _flags(format, &a);
 			w = _width(format, &a, l);
 			p = _precision(format, &a, l);
 			s = _getsize(format, &a);
